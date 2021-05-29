@@ -1,3 +1,4 @@
+//dataset 1
 var data = [
  {
     "EventId": "eef..105",
@@ -43,6 +44,8 @@ var data = [
   "Positionindex": 10
 }
 ];
+
+//dataset 2
 var data1 = [
 {
       "EventId": "0de..cd2",
@@ -101,6 +104,7 @@ var data1 = [
   }
 ];
 
+//dataset 3
 var data2 = [
 {
       "EventId": "f59..2cd",
@@ -215,6 +219,7 @@ data.forEach(function(d) {
       .style("text-anchor", "end")
       .text("Line of Code");
 
+//Update input data
 function update(datas) {
 
   var u = svg.selectAll(".groups")
@@ -234,6 +239,7 @@ function update(datas) {
 }
 update(data)
 
+//Adding legends
 var legend = svg.selectAll(".legend")
       .data(ageNames.slice().reverse())
       .enter().append("g")
