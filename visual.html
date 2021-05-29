@@ -57,9 +57,9 @@ var data1 = [
     "Stepinto": 42
   },
   {
-  "EventId": "eb9..047",
-  "Stepinto": 70
-}
+    "EventId": "eb9..047",
+    "Stepinto": 70
+  }
 ];
 
 //Dataset 2
@@ -94,9 +94,9 @@ var data2 = [
   "Stepinto": 62
   },
   {
-"EventId": "ff6..9e2",
-"Stepinto": 66
-}
+  "EventId": "ff6..9e2",
+  "Stepinto": 66
+  }
 ];
 
 //Dataset 3
@@ -135,20 +135,19 @@ var data3 = [
     "Stepinto": 25
     },
     {
-  "EventId": "686..89f",
-  "Stepinto": 42
-  }
+    "EventId": "686..89f",
+    "Stepinto": 42
+    }
 ];
 var margin = {top: 30, right: 30, bottom: 70, left: 60},
     width = 960 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 var svg = d3.select("#my_dataviz")
   .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+  .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
 // Initialize the X axis
 var x = d3.scaleBand()
@@ -193,11 +192,12 @@ function update(data) {
     .merge(u)
     .transition()
     .duration(1000)
-      .attr("x", function(d) { return x(d.EventId); })
-      .attr("y", function(d) { return y(d.Stepinto); })
-      .attr("width", x.bandwidth())
-      .attr("height", function(d) { return height - y(d.Stepinto); })
-      .attr("fill", "#8a89a6")
+    .attr("x", function(d) { return x(d.EventId); })
+    .attr("y", function(d) { return y(d.Stepinto); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return height - y(d.Stepinto); })
+    .attr("fill", "#8a89a6")
+  
   u
     .exit()
     .remove()
