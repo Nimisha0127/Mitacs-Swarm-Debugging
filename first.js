@@ -208,6 +208,11 @@ data.forEach(function(d) {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
+  svg.append("text")
+    .attr("text-anchor", "middle")
+    .attr("x", width-500)
+    .attr("y", height + margin.top + 10)
+    .text("Sequence of Events");
 
   svg.append("g")
       .attr("class", "y axis")
@@ -248,7 +253,7 @@ var legend = svg.selectAll(".legend")
 
 legend.append("rect")
       .attr("x", width +15 )
-      .attr("width", 18)
+      .attr("width", 20)
       .attr("height", 18)
       .style("fill", color);
 
