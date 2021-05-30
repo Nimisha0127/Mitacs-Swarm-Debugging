@@ -293,7 +293,7 @@ function update(data) {
     .append("rect")
     .merge(u)
     .transition()
-    .duration(1000)
+    .duration(2000)
     .attr("x", function(d) { return x(d.EventId); })
     .attr("y", function(d) { return y(d.Stepinto); })
     .attr("width", x.bandwidth())
