@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<center><h1>Debugging Sessions</h1></center>
+<script src="https://d3js.org/d3.v4.js"></script>
+<style>
+body {
+  font: 15px sans-serif ;
+  font-weight: bold;
+}
+.button {
+  background-color: #a05d56;
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+.button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.grid line {
+    stroke: black;
+    stroke-opacity: 0.6;
+    shape-rendering: crispEdges;
+}
+.grid path {
+    stroke-width: 0;
+}
+a {
+  color: white;
+  text-align: center;
+}
+.legend { list-style: none; margin-left:10px;}
+.legend li { float: left; margin-right: 15px;}
+.legend span { border: 1px solid #ccc; float: left; width: 11px; height: 12px; margin: 2px;}
+.legend {
+    position: fixed;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+.legend .filedot { background-color: #3CB371; border: 2px solid black;}
+.legend .pathdot { background-color: #00008B; border-radius: 50%; width: 13px; height: 13px;}
+</style>
+<center>
+<button class="button" onclick="update(session1)">Session 1 </button>
+<button class="button"><a href="mitacs1.html">Session 2 </a></button>
+<ul class="legend">
+    <li><span class="filedot"></span>File</li><br></br>
+    <li><span class="pathdot"></span>Path Node</li><br></br>
+</ul>
+<div id="my_dataviz"></div>
+<script>
+//Dataset 1
+var session1 = [
+  {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "fb07eec4-faeb-4bec-84ee-34221f953f8d",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 73,
+    "nodePoints": 7,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 4,
+    "pathnode_lineno": 34,
+    "eventId": "eef96456-5d22-438c-8303-189e2d35d105",
+    "evaluated": true,
+    "x": 0,
+    "z": 0
+    },
+    {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "fb07eec4-faeb-4bec-84ee-34221f953f8d",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 73,
+    "nodePoints": 7,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 4,
+    "pathnode_lineno": 35,
+    "eventId": "e60c6b46-9203-4f72-bcde-25a15b460f11",
+    "evaluated": true,
+    "x": 0,
+    "z": 0
+    },
+    {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "fb07eec4-faeb-4bec-84ee-34221f953f8d",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 73,
+    "nodePoints": 7,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 4,
+    "pathnode_lineno": 35,
+    "eventId": "9c2fcaf0-9737-421b-82f4-487823d1edd9",
+    "evaluated": true,
+    "x": 0,
+    "z": 0
+    },
+    {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "fb07eec4-faeb-4bec-84ee-34221f953f8d",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 73,
+    "nodePoints": 7,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 4,
+    "pathnode_lineno": 38,
+    "eventId": "8ff4f050-8697-4b6c-ab95-7e6053b4963a",
+    "evaluated": true,
+    "x": 0,
+    "z": 0
+    },
+    {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "fb07eec4-faeb-4bec-84ee-34221f953f8d",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 73,
+    "nodePoints": 7,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 4,
+    "pathnode_lineno": 40,
+    "eventId": "1fa44d84-3d83-4ec3-bca6-27a6cfdd88b0",
+    "evaluated": true,
+    "x": 0,
+    "z": 0
+    },
+    {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "fb07eec4-faeb-4bec-84ee-34221f953f8d",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 73,
+    "nodePoints": 7,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 4,
+    "pathnode_lineno": 42,
+    "eventId": "185cf5a0-3d44-4448-9ec4-7993811340e2",
+    "evaluated": true,
+    "x": 0,
+    "z": 0
+    },
+    {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "fb07eec4-faeb-4bec-84ee-34221f953f8d",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 73,
+    "nodePoints": 7,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 4,
+    "pathnode_lineno": 70,
+    "eventId": "eb95f9d7-4f23-44d0-abf1-b1cb29281047",
+    "evaluated": true,
+    "x": 0,
+    "z": 0
+    },
+    {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "e64eae99-bbf0-41ce-bf2b-f75071a713a8",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 4,
+    "nodeSpaceBefore": 2,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 14,
+    "eventId": "fc0b286f-fe9e-4f72-886d-aaca02f914b0",
+    "evaluated": true,
+    "x": 1,
+    "z": 0
+    },
+    {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "e64eae99-bbf0-41ce-bf2b-f75071a713a8",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 4,
+    "nodeSpaceBefore": 2,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 15,
+    "eventId": "fa01b0ae-2c5e-4a94-a5c4-3d796da89d8e",
+    "evaluated": true,
+    "x": 1,
+    "z": 0
+    },
+    {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "e64eae99-bbf0-41ce-bf2b-f75071a713a8",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 4,
+    "nodeSpaceBefore": 2,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 18,
+    "eventId": "6fabf778-f8e3-46d4-99e0-26d854658eb5",
+    "evaluated": true,
+    "x": 1,
+    "z": 0
+    },
+    {
+    "session_name": "2020-09-04T01:51:11Z",
+    "sessionId": "85738ead-b994-43be-8406-e9b483476726",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "e64eae99-bbf0-41ce-bf2b-f75071a713a8",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 4,
+    "nodeSpaceBefore": 2,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 34,
+    "eventId": "f7fa4882-ba01-40dc-a6ad-00e2510694f5",
+    "evaluated": true,
+    "x": 1,
+    "z": 0
+    }
+];
+
+var margin = {top: 30, right: 30, bottom: 70, left: 60},
+    width = 800 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+function make_x_gridlines() {
+  return d3.axisBottom(x)
+  .ticks(8)}
+function make_y_gridlines() {
+  return d3.axisLeft(y)
+  .ticks(20)}
+
+// Initialize the X axis
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .padding(0.2);
+var xAxis = svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+svg.append("text")
+  .attr("text-anchor", "middle")
+  .attr("x", width-350)
+  .attr("y", height + margin.top + 10)
+  .style("font", "20px times")
+  .text("Files");
+
+// Initialize the Y axis
+var y = d3.scaleLinear()
+  .range([ height, 0]);
+var yAxis = svg.append("g")
+  .attr("class", "myYaxis");
+svg.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", -40)
+  .attr("dy", ".71em")
+  .style("text-anchor", "end")
+  .style("font", "20px times")
+  .text("Line of Code");
+
+//Gridlines
+svg.append("g")
+  .attr("class","grid")
+  .attr("transform","translate(0," + height + ")")
+  .style("stroke-dasharray",("3,3"))
+  .call(make_x_gridlines()
+  .tickSize(-height)
+  .tickFormat(""))
+
+svg.append("g")
+  .attr("class","grid")
+  .style("stroke-dasharray",("3,3"))
+  .call(make_y_gridlines()
+  .tickSize(-width)
+  .tickFormat(""))
+
+// A function to create or update the plot for a given variable
+function update(data) {
+
+  // Update the X axis
+  x.domain(data.map(function(d) { return d.fileName; }))
+  xAxis.call(d3.axisBottom(x))
+
+  // Update the Y axis
+  y.domain([0, d3.max(data, function(d) { return d.lines; }) ]);
+  yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+//Update bars
+  var u = svg.selectAll("rect")
+         .data(data)
+
+  u
+  .enter()
+  .append("rect")
+  .merge(u)
+  .transition()
+  .duration(2000)
+  .attr("x", function(d) { return x(d.fileName); })
+  .attr("y", function(d) { return y(d.lines); })
+  .attr("width", x.bandwidth())
+  .attr("height", function(d) { return height - y(d.lines); })
+  .attr("fill", "#3CB371")
+  .attr("stroke", "black")
+  .attr("stroke-width", 2)
+
+  u
+  .exit()
+  .transition()
+  .duration(500)
+  .remove()
+
+//Update Lines
+ var w = svg.selectAll(".lineTest")
+        .data([data], function(d){ return d.fileName });
+  w
+  .enter()
+  .append("path")
+  .attr("class","lineTest")
+  .merge(w)
+  .transition()
+  .duration(2000)
+  .attr("d", d3.line()
+  .x(function(d) { return x(d.fileName); })
+  .y(function(d) { return y(d.pathnode_lineno); }))
+  .attr("fill", "none")
+  .attr("stroke", "#B22222")
+  .attr("stroke-width", 3)
+  .attr("transform", "translate(" + 120 +")")
+  w
+  .exit()
+  .transition()
+  .duration(500)
+  .remove()
+
+//Update points
+ var selectCircle = svg.selectAll(".circle")
+                   .data(data);
+ selectCircle
+  .enter().append("circle")
+  .attr("class", "circle")
+  .merge(selectCircle)
+  .transition()
+  .duration(2000)
+  .attr("r", 10)
+  .attr("cx", function(d) {return x(d.fileName)})
+  .attr("cy", function(d) {return y(d.pathnode_lineno)})
+  .attr("fill", "#00008B")
+  .style("opacity", 0.4)
+  .attr("transform", "translate(" + 120 + ")")
+  .attr("stroke", "white")
+  .attr("stroke-width", 3)
+
+  selectCircle
+   .exit()
+   .transition()
+   .duration(500)
+   .remove()
+}
+update(session1)
+</script>
+</center>
