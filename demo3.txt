@@ -1,0 +1,70 @@
+@startuml
+skinparam componentstyle uml2
+left to right direction
+skinparam component{
+  BackgroundColor Moccasin
+}
+package "**ShareX**" {
+ component "**ShareXCLIManager**" as ShareXCLIManager <<component>>
+}
+package "**ShareX.HelpersLib**" {
+ component "**CLIManager**" as CLIManager <<component>>
+}
+package "**ShareX**" {
+ component "**Program**" as Program <<component>>
+}
+package "**ShareX.HelpersLib**" {
+ component "**ApplicationInstanceManager**" as ApplicationInstanceManager <<component>>
+}
+package "**ShareX.HelpersLib**" {
+ component "**DebugHelper**" as DebugHelper <<component>>
+}
+package "**ShareX.HelpersLib**" {
+ component "**Helpers**" as Helpers <<component>>
+}
+package "**ShareX**" {
+ component "**IntegrationHelpers**" as IntegrationHelpers <<component>>
+}
+package "**ShareX**" {
+ component "**SettingManager**" as SettingManager <<component>>
+}
+package "**ShareX.HelpersLib.SettingsBase<ShareX**" {
+ component "**ApplicationConfig**" as ApplicationConfig <<component>>
+}
+package "**ShareX.UploadersLib**" {
+ component "**Uploader**" as Uploader <<component>>
+}
+package "**ShareX.HelpersLib**" {
+ component "**GitHubUpdateManager**" as GitHubUpdateManager <<component>>
+}
+package "**ShareX**" {
+ component "**LanguageHelper**" as LanguageHelper <<component>>
+}
+package "**ShareX**" {
+ component "**CleanupManager**" as CleanupManager <<component>>
+}
+package "**ShareX**" {
+ component "**MainForm**" as MainForm <<component>>
+}
+package "**ShareX.HelpersLib**" {
+ component "**ImageFilesCache**" as ImageFilesCache <<component>>
+}
+package "**ShareX.HelpersLib**" {
+ component "**HotkeyForm**" as HotkeyForm <<component>>
+}
+ShareXCLIManager --u(0-- Program
+CLIManager --u(0-- ShareXCLIManager
+ApplicationInstanceManager --u(0-- Program
+DebugHelper --u(0-- Program
+CLIManager --u(0-- Program
+Helpers --u(0-- Program
+IntegrationHelpers --u(0-- Program
+SettingManager --u(0-- Program
+ApplicationConfig --u(0-- SettingManager
+Uploader --u(0-- Program
+GitHubUpdateManager --u(0-- Program
+LanguageHelper --u(0-- Program
+CleanupManager --u(0-- Program
+MainForm --u(0-- Program
+ImageFilesCache --u(0-- MainForm
+@enduml
