@@ -61,11 +61,11 @@ else:
     file.close()
 
 #Execute plantuml.jar to generate diagram
-subprocess.run("java -jar plantuml.jar -tsvg demo36.txt",capture_output=True)
+subprocess.run("java -jar plantuml.jar -tpng demo36.txt",capture_output=True)
 
 #Open the diagram in browser
 if path.exists("home6.html"):
     print("File already exists, create new HTML file!")
 else:
-    open("home6.html","w+").write('<!DOCTYPE html>\n<html>\n<body>\n<center>\n<h1><b>Debugging Session</b></h1><br>\n<img src="demo36.svg">\n<center>\n</html>')
+    open("home6.html","w+").write('<!DOCTYPE html>\n<html>\n<body>\n<center>\n<h1><b>Debugging Session</b></h1><br>\n<img src="demo36.png">\n<center>\n</html>')
     webbrowser.open('file:///' + os.path.realpath("home6.html"))
