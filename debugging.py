@@ -5,11 +5,15 @@ import webbrowser
 import os.path
 from os import path
 
+#Load Json
 with open('test1.json', encoding="utf8") as f:
  data = json.load(f)
 
+#Check if text file exists
 if path.exists("demo36.txt"):
     print("File already exists, create new text file!")
+    
+#Else create new text file and write the PlantUML Descriptor
 else:
     file = open("demo36.txt", "w+")
     file.write("@startuml\n")
@@ -56,7 +60,10 @@ else:
     file.write("@enduml")
     file.close()
 
+#Execute plantuml.jar to generate diagram
 subprocess.run("java -jar plantuml.jar -tsvg demo36.txt",capture_output=True)
+
+#Open the diagram in browser
 if path.exists("home6.html"):
     print("File already exists, create new HTML file!")
 else:
