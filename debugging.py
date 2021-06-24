@@ -67,7 +67,7 @@ else:
     file.close()
     
     #Execute plantuml.jar to generate diagram
-    subprocess.run("java -jar plantuml.jar -tpng %s.txt"%alpha,capture_output=True)
+    subprocess.run("java -jar plantuml.jar -tpng %s.txt"%alpha,shell=True)
     
     #Open the diagram in browser
     beta= "%s.png"%alpha
