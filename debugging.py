@@ -55,7 +55,7 @@ else:
         for i in data["PathNodes"]:
             for j in data["PathNodes"]:
                 if k["Id"] == i["Event_Id"]:
-                    if j["Type"] in res:
+                    if j["Type"] in res and i["Type"] in res:
                        if j["Parent_Id"] == i["Id"] and j["Origin"] == "StepInto" and j["Type"] != i["Type"]:
                           a=j["Type"] + " --u(0-- " + i["Type"]
                           if a not in res1:
