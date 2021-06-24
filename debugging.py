@@ -55,14 +55,15 @@ else:
         for i in data["PathNodes"]:
             for j in data["PathNodes"]:
                 if k["Id"] == i["Event_Id"]:
-                    if j["Parent_Id"] == i["Id"] and j["Origin"] == "StepInto" and j["Type"] != i["Type"]:
-                        a=j["Type"] + " --u(0-- " + i["Type"]
-                        if a not in res1:
-                            res1.append(j["Type"] + " --u(0-- " + i["Type"])
-                            file.write(j["Type"])
-                            file.write(" --u(0-- ")
-                            file.write(i["Type"])
-                            file.write("\n")
+                    if j["Type"] in res:
+                       if j["Parent_Id"] == i["Id"] and j["Origin"] == "StepInto" and j["Type"] != i["Type"]:
+                          a=j["Type"] + " --u(0-- " + i["Type"]
+                          if a not in res1:
+                              res1.append(j["Type"] + " --u(0-- " + i["Type"])
+                              file.write(j["Type"])
+                              file.write(" --u(0-- ")
+                              file.write(i["Type"])
+                              file.write("\n")
     file.write("@enduml")
     file.close()
     
