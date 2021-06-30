@@ -8,21 +8,17 @@ import string
 import random  
 import unittest
 
-def generate(jsonfile):
-     
-    S = 8    
-    ran = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))    
-    alpha= str(ran) 
+S = 8    
+ran = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))    
+alpha= str(ran)
 
-    #Load Json
+#Load Json and create the PlantUML Descriptor
+def create(jsonfile):
+     
     with open(jsonfile, encoding='utf-8-sig') as f:
         data = json.load(f)
-
-    #Check if text file exists
     if path.exists("%s.txt"%alpha):
         print("File already exists, create new text file!")
-    
-    #Else create new text file and write the PlantUML Descriptor
     else:
         file = open("%s.txt"%alpha, "w+")
         file.write("@startuml\n")
@@ -69,11 +65,17 @@ def generate(jsonfile):
                                 file.write("\n")
     file.write("@enduml")
     file.close()
+    return('Descriptor Created')
     
-    #Execute plantuml.jar to generate diagram
+
+#Execute plantuml.jar to generate diagram
+def generate():
     subprocess.run("java -jar plantuml.jar -tpng %s.txt"%alpha,shell=True)
-    
-    #Open the diagram in browser
+    return('Diagram Generated')
+ 
+   
+#Open the diagram in browser
+def display():
     beta= "%s.png"%alpha
     if path.exists("%s.html"%alpha):
         print("File already exists, create new HTML file!")
@@ -82,37 +84,24 @@ def generate(jsonfile):
         new_message = message.format(URL=beta)
         open("%s.html"%alpha,"w+").write(new_message)
         webbrowser.open('file:///' + os.path.realpath("%s.html"%alpha))
-    return('Diagram Generated')
+    return('Diagram displayed in browser')
 
+
+#Unit Tests
 class TestUml(unittest.TestCase):
     #Unit Test 1
     def test_1(self):
-        self.assertEqual(generate('test1.json'),'Diagram Generated')
+        self.assertEqual(create('test3.json'),'Descriptor Created')
         
-    #Unit Test 2
+    #Unit Test 2    
     def test_2(self):
-        self.assertEqual(generate('test3.json'),'Diagram Generated')
+        self.assertEqual(generate(),'Diagram Generated')
         
-    #Unit Test 3
+    #Unit Test 3  
     def test_3(self):
-        self.assertEqual(generate('test6.json'),'Diagram Generated')
+        self.assertEqual(display(),'Diagram displayed in browser')
         
-    #Unit Test 4
-    def test_4(self):
-        self.assertEqual(generate('test8.json'),'Diagram Generated')
-        
-    #Unit Test 5
-    def test_5(self):
-        self.assertEqual(generate('test14.json'),'Diagram Generated')
-        
-    #Unit Test 6
-    def test_6(self):
-        self.assertEqual(generate('test9.json'),'Diagram Generated')
-    
-    #Unit Test 7
-    def test_7(self):
-        self.assertEqual(generate('test15.json'),'Diagram Generated')
-
-         
+ 
+#Main
 if __name__ == '__main__':
     unittest.main()
