@@ -1,4 +1,3 @@
 # Mitacs-Swarm-Debugging
-
-mitacs.html is session1 and
-mitacs1.html is session2
+Drive link for debugging session recordings and issu component diagrams
+https://drive.google.com/drive/folders/1_szqJqHY1usvkfrr7Jf-38LvrPmcjY_b
