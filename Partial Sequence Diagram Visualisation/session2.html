@@ -1,1 +1,911 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<center><h1>Debugging Sessions</h1></center>
+<script src="https://d3js.org/d3.v4.js"></script>
+<style>
+body {
+  font: 15px sans-serif ;
+  font-weight: bold;
+}
+.button {
+  background-color: #a05d56;
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+.button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.grid line {
+    stroke: black;
+    stroke-opacity: 0.6;
+    shape-rendering: crispEdges
+}
+.grid path {
+    stroke-width: 0;
+}
+a {
+  color: white;
+  text-align: center;
+}
+.legend { list-style: none; margin-left:10px;}
+.legend li { float: left; margin-right: 15px;}
+.legend span { border: 1px solid #ccc; float: left; width: 11px; height: 12px; margin: 2px;}
+.legend {
+    position: fixed;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+.legend .filedot { background-color: #3CB371; border: 2px solid black;}
+.legend .pathdot { background-color: #00008B; border-radius: 50%; width: 13px; height: 13px;}
+</style>
+<center>
+<button class="button"><a href="mitacs.html">Session 1 </a></button>
+<button class="button" onclick="update(session2)">Session 2 </button>
+<ul class="legend">
+    <li><span class="filedot"></span>File</li><br></br>
+    <li><span class="pathdot"></span>Path Node</li><br></br>
+</ul>
+<div id="my_dataviz"></div>
+<script>
 
+//Dataset 2
+var session2 = [
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "e384746c-4761-4b61-9fb5-b3dd1d643ff8",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 69,
+    "nodePoints": 9,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 28,
+    "pathnode_lineno": 36,
+    "eventId": "0de4dbee-8907-4666-a5cd-f07440177cd2",
+    "evaluated": true,
+    "x": 0,
+    "z": 8
+    },
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "e384746c-4761-4b61-9fb5-b3dd1d643ff8",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 69,
+    "nodePoints": 9,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 28,
+    "pathnode_lineno": 38,
+    "eventId": "4192aea3-6587-4e53-af3c-11f0571b7c2e",
+    "evaluated": true,
+    "x": 0,
+    "z": 8
+    },
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "e384746c-4761-4b61-9fb5-b3dd1d643ff8",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 69,
+    "nodePoints": 9,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 28,
+    "pathnode_lineno": 57,
+    "eventId": "2362b193-9ce0-45b8-af27-3e5c49a43e8b",
+    "evaluated": true,
+    "x": 0,
+    "z": 8
+    },
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "e384746c-4761-4b61-9fb5-b3dd1d643ff8",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 69,
+    "nodePoints": 9,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 28,
+    "pathnode_lineno": 58,
+    "eventId": "f0915861-4bc2-4187-a5b2-23b29444ec74",
+    "evaluated": true,
+    "x": 0,
+    "z": 8
+    },
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "e384746c-4761-4b61-9fb5-b3dd1d643ff8",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 69,
+    "nodePoints": 9,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 28,
+    "pathnode_lineno": 59,
+    "eventId": "576b8d27-ef85-4330-8ce9-e3bdbd17552b",
+    "evaluated": true,
+    "x": 0,
+    "z": 8
+    },
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "e384746c-4761-4b61-9fb5-b3dd1d643ff8",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 69,
+    "nodePoints": 9,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 28,
+    "pathnode_lineno": 60,
+    "eventId": "7e6dfc26-d6bb-4eb0-a1c7-3ab64dced304",
+    "evaluated": true,
+    "x": 0,
+    "z": 8
+    },
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "e384746c-4761-4b61-9fb5-b3dd1d643ff8",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 69,
+    "nodePoints": 9,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 28,
+    "pathnode_lineno": 62,
+    "eventId": "064196d1-bc34-4c7e-8ebf-1e387495e037",
+    "evaluated": true,
+    "x": 0,
+    "z": 8
+    },
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "e384746c-4761-4b61-9fb5-b3dd1d643ff8",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 69,
+    "nodePoints": 9,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 28,
+    "pathnode_lineno": 62,
+    "eventId": "0a47b105-9ae4-4b44-8709-dce924cd9896",
+    "evaluated": true,
+    "x": 0,
+    "z": 8
+    },
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Program.cs (File 1)",
+    "originalId": "e384746c-4761-4b61-9fb5-b3dd1d643ff8",
+    "fileId": "0",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Program.cs",
+    "groupId": 0,
+    "groupIndex": 0,
+    "lines": 69,
+    "nodePoints": 9,
+    "nodeSpaceBefore": 0,
+    "nodeSpaceAfter": 28,
+    "pathnode_lineno": 66,
+    "eventId": "ff6dec7d-0afb-4f54-ad4d-2641a655d9e2",
+    "evaluated": true,
+    "x": 0,
+    "z": 8
+    },
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 28,
+    "nodeSpaceBefore": 7,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 14,
+    "eventId": "f59ee401-d62b-4f1d-b215-04163ba842cd",
+    "evaluated": true,
+    "x": 1,
+    "z": 8
+    },
+    {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 28,
+    "nodeSpaceBefore": 7,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 15,
+    "eventId": "01b709c8-4f78-45bf-8478-e2511650e47f",
+    "evaluated": true,
+    "x": 1,
+    "z": 8
+   },
+   {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 28,
+    "nodeSpaceBefore": 7,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 20,
+    "eventId": "fb63669e-5a3f-47ec-ad10-65628afebd64",
+    "evaluated": true,
+    "x": 1,
+    "z": 8
+   },
+   {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 28,
+    "nodeSpaceBefore": 7,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 24,
+    "eventId": "ce2a11e5-6b79-4b40-9c31-73c11388255f",
+    "evaluated": true,
+    "x": 1,
+    "z": 8
+   },
+   {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 28,
+    "nodeSpaceBefore": 7,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 24,
+    "eventId": "86ac8a75-8d4d-472e-b8f1-7a9694678f3e",
+    "evaluated": true,
+    "x": 1,
+    "z": 8
+   },
+   {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 28,
+    "nodeSpaceBefore": 7,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 25,
+    "eventId": "776e1aa1-1a48-4c12-93d8-7ae5eeb8696c",
+    "evaluated": true,
+    "x": 1,
+    "z": 8
+   },
+   {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 28,
+    "nodeSpaceBefore": 7,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 25,
+    "eventId": "3f57473f-5003-4c13-8ab6-0e87f3786f19",
+    "evaluated": true,
+    "x": 1,
+    "z": 8
+   },
+   {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 27,
+   "eventId": "a00a03f5-c5f0-4809-ae59-78f0ecf604ba",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+  "session_name": "2020-09-04T01:52:39Z",
+  "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+  "fileName": "Person.cs (File 2)",
+  "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+  "fileId": "1",
+  "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+  "groupId": 0,
+  "groupIndex": 1,
+  "lines": 46,
+  "nodePoints": 28,
+  "nodeSpaceBefore": 7,
+  "nodeSpaceAfter": 0,
+  "pathnode_lineno": 27,
+  "eventId": "6f788d84-c0a7-4a57-a450-b62480477b7b",
+  "evaluated": true,
+  "x": 1,
+  "z": 8
+  },
+  {
+  "session_name": "2020-09-04T01:52:39Z",
+  "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+  "fileName": "Person.cs (File 2)",
+  "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+  "fileId": "1",
+  "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+  "groupId": 0,
+  "groupIndex": 1,
+  "lines": 46,
+  "nodePoints": 28,
+  "nodeSpaceBefore": 7,
+  "nodeSpaceAfter": 0,
+  "pathnode_lineno": 27,
+  "eventId": "36d36cbf-78a1-4b44-b26b-62da9c69ae18",
+  "evaluated": true,
+  "x": 1,
+  "z": 8
+  },
+  {
+  "session_name": "2020-09-04T01:52:39Z",
+  "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+  "fileName": "Person.cs (File 2)",
+  "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+  "fileId": "1",
+  "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+  "groupId": 0,
+  "groupIndex": 1,
+  "lines": 46,
+  "nodePoints": 28,
+  "nodeSpaceBefore": 7,
+  "nodeSpaceAfter": 0,
+  "pathnode_lineno": 27,
+  "eventId": "86d2654c-b308-4dd7-8710-e459a1807273",
+  "evaluated": true,
+  "x": 1,
+  "z": 8
+  },
+  {
+  "session_name": "2020-09-04T01:52:39Z",
+  "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+  "fileName": "Person.cs (File 2)",
+  "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+  "fileId": "1",
+  "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+  "groupId": 0,
+  "groupIndex": 1,
+  "lines": 46,
+  "nodePoints": 28,
+  "nodeSpaceBefore": 7,
+  "nodeSpaceAfter": 0,
+  "pathnode_lineno": 27,
+  "eventId": "b8c3dd03-ac4d-4efd-93dd-dc18c7123b48",
+  "evaluated": true,
+  "x": 1,
+  "z": 8
+  },
+  {
+  "session_name": "2020-09-04T01:52:39Z",
+  "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+  "fileName": "Person.cs (File 2)",
+  "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+  "fileId": "1",
+  "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+  "groupId": 0,
+  "groupIndex": 1,
+  "lines": 46,
+  "nodePoints": 28,
+  "nodeSpaceBefore": 7,
+  "nodeSpaceAfter": 0,
+  "pathnode_lineno": 27,
+  "eventId": "f2060318-18a9-414b-8e90-32742904a249",
+  "evaluated": true,
+  "x": 1,
+  "z": 8
+  },
+  {
+  "session_name": "2020-09-04T01:52:39Z",
+  "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+  "fileName": "Person.cs (File 2)",
+  "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+  "fileId": "1",
+  "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+  "groupId": 0,
+  "groupIndex": 1,
+  "lines": 46,
+  "nodePoints": 28,
+  "nodeSpaceBefore": 7,
+  "nodeSpaceAfter": 0,
+  "pathnode_lineno": 27,
+  "eventId": "f477eac0-6702-46bc-b230-683c67bc0bdf",
+  "evaluated": true,
+  "x": 1,
+  "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 28,
+   "eventId": "5b336308-efcb-4ff6-9b78-496febb1cce0",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 28,
+   "eventId": "0664381f-9f90-4ba4-a143-04ca50f98bef",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 29,
+   "eventId": "2f01f4a2-cf66-4ce2-969b-3310d5958632",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 29,
+   "eventId": "019fc358-ea65-4940-b798-3532e18fde96",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 31,
+   "eventId": "ac975414-f0fd-45e7-a6d7-e1c60fc85653",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 31,
+   "eventId": "4edd7037-756c-4ebe-a3f4-335f7fdc1c65",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 33,
+   "eventId": "fc0f869f-cd2d-409e-95de-9664aaaaa27b",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 34,
+   "eventId": "b045293a-9ebe-4af9-8fc2-b31a01b08044",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 37,
+   "eventId": "ec4a27bd-73bc-42e3-b5e9-fca327002b66",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 38,
+   "eventId": "df80eba5-f197-45c1-a981-055f7ddc3b96",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+},
+{
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 39,
+   "eventId": "403cac07-1964-4d58-a2b6-dc58b319261c",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 42,
+   "eventId": "686e7aaf-8b32-4039-a858-4a8fd9c1a89f",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+  },
+  {
+   "session_name": "2020-09-04T01:52:39Z",
+   "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+   "fileName": "Person.cs (File 2)",
+   "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+   "fileId": "1",
+   "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+   "groupId": 0,
+   "groupIndex": 1,
+   "lines": 46,
+   "nodePoints": 28,
+   "nodeSpaceBefore": 7,
+   "nodeSpaceAfter": 0,
+   "pathnode_lineno": 43,
+   "eventId": "8b99cca2-b8f2-4607-9441-283d8c761fd3",
+   "evaluated": true,
+   "x": 1,
+   "z": 8
+   },
+   {
+    "session_name": "2020-09-04T01:52:39Z",
+    "sessionId": "a6c90df9-a06c-4095-9aee-613cfd0e684f",
+    "fileName": "Person.cs (File 2)",
+    "originalId": "635d0e80-de8b-45a9-94ff-932e43e5cb9f",
+    "fileId": "1",
+    "filePath": "D:\\source\\repos\\ConsoleApp1\\ConsoleApp1\\Person.cs",
+    "groupId": 0,
+    "groupIndex": 1,
+    "lines": 46,
+    "nodePoints": 28,
+    "nodeSpaceBefore": 7,
+    "nodeSpaceAfter": 0,
+    "pathnode_lineno": 44,
+    "eventId": "ac8efeea-a3ca-47c0-9ad7-73c6d5814463",
+    "evaluated": true,
+    "x": 1,
+    "z": 8
+   }
+];
+
+var margin = {top: 30, right: 30, bottom: 70, left: 60},
+    width = 800 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+function make_x_gridlines() {
+  return d3.axisBottom(x)
+  .ticks(8)}
+function make_y_gridlines() {
+  return d3.axisLeft(y)
+  .ticks(20)}
+
+// Initialize the X axis
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .padding(0.2);
+var xAxis = svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+svg.append("text")
+  .attr("text-anchor", "middle")
+  .attr("x", width-350)
+  .attr("y", height + margin.top + 10)
+  .style("font", "20px times")
+  .text("Files");
+
+// Initialize the Y axis
+var y = d3.scaleLinear()
+  .range([ height, 0]);
+var yAxis = svg.append("g")
+  .attr("class", "myYaxis");
+svg.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", -40)
+  .attr("dy", ".71em")
+  .style("text-anchor", "end")
+  .style("font", "20px times")
+  .text("Line of Code");
+
+//Gridlines
+svg.append("g")
+  .attr("class","grid")
+  .attr("transform","translate(0," + height + ")")
+  .style("stroke-dasharray",("3,3"))
+  .call(make_x_gridlines()
+  .tickSize(-height)
+  .tickFormat(""))
+
+svg.append("g")
+  .attr("class","grid")
+  .style("stroke-dasharray",("3,3"))
+  .call(make_y_gridlines()
+  .tickSize(-width)
+  .tickFormat(""))
+
+// A function to create or update the plot for a given variable
+function update(data) {
+
+  // Update the X axis
+  x.domain(data.map(function(d) { return d.fileName; }))
+  xAxis.call(d3.axisBottom(x))
+
+  // Update the Y axis
+  y.domain([0, d3.max(data, function(d) { return d.lines; }) ]);
+  yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+//Update bars
+  var u = svg.selectAll("rect")
+         .data(data)
+
+  u
+  .enter()
+  .append("rect")
+  .merge(u)
+  .transition()
+  .duration(2000)
+  .attr("x", function(d) { return x(d.fileName); })
+  .attr("y", function(d) { return y(d.lines); })
+  .attr("width", x.bandwidth())
+  .attr("height", function(d) { return height - y(d.lines); })
+  .attr("fill", "#3CB371")
+  .attr("stroke", "black")
+  .attr("stroke-width", 2)
+
+  u
+  .exit()
+  .transition()
+  .duration(500)
+  .remove()
+
+//Update Lines
+ var w = svg.selectAll(".lineTest")
+        .data([data], function(d){ return d.fileName });
+  w
+  .enter()
+  .append("path")
+  .attr("class","lineTest")
+  .merge(w)
+  .transition()
+  .duration(2000)
+  .attr("d", d3.line()
+  .x(function(d) { return x(d.fileName); })
+  .y(function(d) { return y(d.pathnode_lineno); }))
+  .attr("fill", "none")
+  .attr("stroke", "#B22222")
+  .attr("stroke-width", 3)
+  .attr("transform", "translate(" + 120 +")")
+  w
+  .exit()
+  .transition()
+  .duration(500)
+  .remove()
+
+//Update points
+ var selectCircle = svg.selectAll(".circle")
+                   .data(data);
+ selectCircle
+  .enter().append("circle")
+  .attr("class", "circle")
+  .merge(selectCircle)
+  .transition()
+  .duration(2000)
+  .attr("r", 10)
+  .attr("cx", function(d) {return x(d.fileName)})
+  .attr("cy", function(d) {return y(d.pathnode_lineno)})
+  .attr("fill", "#00008B")
+  .style("opacity", 0.4)
+  .attr("transform", "translate(" + 120 + ")")
+  .attr("stroke", "white")
+  .attr("stroke-width", 3)
+
+  selectCircle
+   .exit()
+   .transition()
+   .duration(500)
+   .remove()
+}
+update(session2)
+</script>
+</center>
